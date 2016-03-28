@@ -17,7 +17,6 @@ var options = {
     jsxDistDir: 'public'
 }
 
-
 gulp.task('sass', function() {
     return gulp.src(options.sassSrcDir)
         .pipe(sass().on('error', sass.logError))
@@ -30,7 +29,6 @@ gulp.task('sass:watch', function () {
       console.log('File ' + event.path + ' was ' + event.type);
     });
 });
-
 
 
 var files = glob.sync(options.jsxSrcDir);
