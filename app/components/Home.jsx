@@ -4,7 +4,7 @@ import { Router, Route, Link } from 'react-router'
 
 const AppBarExampleIcon = () => (
   <AppBar
-    title="Title"
+    title="Title233"
     iconClassNameRight="muidocs-icon-navigation-expand-more"
   />
 );

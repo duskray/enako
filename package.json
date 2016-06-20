@@ -4,8 +4,7 @@
   "description": "this is a demo",
   "main": "server.js",
   "scripts": {
-    "build": "gulp",
-    "start": "node server.js"
+    "start": "gulp && node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -35,8 +34,10 @@
     "material-ui": "^0.15.0-alpha.2",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
+    "react-redux": "^4.4.5",
     "react-router": "^2.0.0-rc5",
     "react-tap-event-plugin": "^0.2.2",
+    "redux": "^3.5.2",
     "swig": "^1.4.2"
   }
 }

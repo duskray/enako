@@ -70,7 +70,7 @@ class Main extends React.Component {
             actions={standardActions}
             onRequestClose={this.handleRequestClose}
           >
-            1-2-3-4-5-8-8
+            1-
           </Dialog>
           <FlatButton
       label="GitHub Link"

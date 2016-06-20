@@ -1,9 +1,9 @@
-var fs = require('fs')
-var path = require('path')
-var swig  = require('swig');
-var app = require('koa')();
-var serve = require('koa-static');
-var bodyParser = require('koa-bodyparser');
+var fs          = require('fs')
+var path        = require('path')
+var swig        = require('swig');
+var app         = require('koa')();
+var serve       = require('koa-static');
+var bodyParser  = require('koa-bodyparser');
 var staticCache = require('koa-static-cache');
 // var React = require('react');
 // var ReactDom = require('react-dom/server');
@@ -29,7 +29,6 @@ app.use(function *(next){
     var ms = new Date - start;
     console.log('%s %s - %s', this.method, this.url, ms);
 });
-
 
 // var props = {
 //       items: [

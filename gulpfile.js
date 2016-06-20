@@ -1,5 +1,5 @@
 var gulp       = require('gulp');
-// var nodemon    = require('gulp-nodemon');
+var nodemon    = require('gulp-nodemon');
 // var sass       = require('gulp-sass');
 var browserify = require('browserify');
 var babelify   = require('babelify');
@@ -13,16 +13,17 @@ var glob       = require("glob");
 var options = {
     cssSrcDir: 'app/stylesheets/**/*.css',
     cssDistDir: 'public',
-    jsxSrcDir: 'app/components/**/*.jsx',
-    jsxDistDir: 'public'
+    jsSrcDir: 'app/**/*.js',
+    jsDistDir: 'public'
 }
 
-var files = glob.sync(options.jsxSrcDir);
+var files = glob.sync(options.jsSrcDir);
+
 var b = browserify({
     entries: files,
     cache: {},
     packageCache: {},
-    extensions: '.jsx',
+    extensions: ['.jsx', '.js'],
     plugin: [watchify]
 });
 
@@ -33,7 +34,7 @@ function bundle() {
         .pipe(source('App.js'))
         .pipe(buffer())
         .pipe(uglify())
-        .pipe(gulp.dest(options.jsxDistDir));
+        .pipe(gulp.dest(options.jsDistDir));
 }
 
 b.on('update', function(ids) {
@@ -43,8 +44,14 @@ b.on('update', function(ids) {
 b.on('log', gutil.log);
 
 gulp.task('build', bundle);
+// gulp.task('watch', function() {
+//     gulp.watch('server.js', ['console', ]);
+// });
+// gulp.task('console', function(){
+//     console.log('server.js has changed.');
+// })
 
-gulp.task('default', ['build']);
+gulp.task('default', ['watch']);
 
 
 // gulp.task('sass', function() {
@@ -85,4 +92,15 @@ gulp.task('default', ['build']);
 //     return stream;
 // })
 
+gulp.task('watch', ['build'], function () {
+    var stream = nodemon({
+        script: 'server.js', 
+        watch: 'server.js'
+    }).on('restart', () => {
+        console.log("restart node server.js")
+    });
+    return stream;
+})
+
 // gulp.task('default', ['watch']);
+
