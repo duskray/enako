@@ -1,14 +1,16 @@
-var gulp       = require('gulp');
-var nodemon    = require('gulp-nodemon');
-// var sass       = require('gulp-sass');
-var browserify = require('browserify');
-var babelify   = require('babelify');
-var watchify   = require('watchify');
-var source     = require('vinyl-source-stream');
-var buffer     = require('vinyl-buffer');
-var uglify     = require('gulp-uglify');
-var gutil      = require('gulp-util');
-var glob       = require("glob");
+var gulp        = require('gulp');
+var nodemon     = require('gulp-nodemon');
+// var sass     = require('gulp-sass');
+var browserify  = require('browserify');
+var babelify    = require('babelify');
+var watchify    = require('watchify');
+var source      = require('vinyl-source-stream');
+var buffer      = require('vinyl-buffer');
+var uglify      = require('gulp-uglify');
+var gutil       = require('gulp-util');
+var glob        = require("glob");
+
+process.env.NODE_ENV = 'production';
 
 var options = {
     cssSrcDir: 'app/stylesheets/**/*.css',
@@ -28,7 +30,8 @@ var b = browserify({
 });
 
 function bundle() {
-    return b.transform("babelify", {presets: ["es2015", "react"]})
+    return b
+        .transform("babelify", {presets: ["es2015", "react"]})
         .bundle()
         .on('error', gutil.log.bind(gutil, 'Browserify Error'))
         .pipe(source('App.js'))
