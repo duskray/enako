@@ -19,9 +19,10 @@ app.use(bodyParser());
 app.use(staticCache(path.join(__dirname, 'public'), {maxAge: 365 * 24 * 60 * 60 }));
 
 app.use(views(__dirname + '/views', {
-  map: {
-    html: 'mustache'
-  },
+  // map: {
+  //   html: 'mustache'
+  // },
+  // default: 'mustache',
   cache: false
 }));
 
@@ -51,7 +52,7 @@ app.use(function *() {
       partials:{more:'more'}
     };
 
-    yield this.render("index", view, function(err, html){
+    yield this.render("index.mustache", view, function(err, html){
       if (err) throw err;
       console.log(html);
     });
