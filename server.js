@@ -1,8 +1,8 @@
 var fs          = require('fs')
 var path        = require('path')
 // var swig        = require('swig');
-var views       = require('koa-views');
 var app         = require('koa')();
+var views       = require('koa-views');
 var serve       = require('koa-static');
 var bodyParser  = require('koa-bodyparser');
 var staticCache = require('koa-static-cache');
@@ -45,11 +45,13 @@ app.use(function *(next){
 app.use(function *() {
    console.log(this.request.body);
    var view = {
-      title: "Joe",
+      title: "[title text]",
       calc: function () {
         return 2 + 4;
       },
-      partials:{more:'more'}
+      partials:{
+        more:'more'
+      }
     };
 
     yield this.render("index.mustache", view, function(err, html){
